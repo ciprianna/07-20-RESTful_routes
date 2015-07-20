@@ -9,7 +9,7 @@ end
 
 post "/users" do
   email = params["users"]["email"]
-  password = Bcrypt::Password.create(params["users"]["password"])
+  password = BCrypt::Password.create(params["users"]["password"])
   @new_user = User.create({"email" => email, "password" => password})
 
   if @new_user.valid?
@@ -20,7 +20,13 @@ post "/users" do
 
 end
 
+get "/users/delete" do
+  erb :"users/delete"
+end
+
 delete "/users/:id" do
+  
+  erb "delete"
 end
 
 get "/users/:id/edit" do
@@ -28,7 +34,9 @@ get "/users/:id/edit" do
 end
 
 put "users/:id" do
+  erb "update"
 end
 
 get "users/:id" do
+  erb "show"
 end

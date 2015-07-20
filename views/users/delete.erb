@@ -1,0 +1,9 @@
+<% User.all.each do |user|%>
+<form action="/users/<%= user.id %>" method="post">
+  <select name="users[id]">
+    <option value="<%=user.id%>">
+      <%=user.email%></option></select>
+    <input type="hidden" name="_method" value="delete">
+  <%end%>
+  <input type="submit">
+</form>
