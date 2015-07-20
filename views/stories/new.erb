@@ -1,0 +1,15 @@
+<div>
+  <% @new_story.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+</div>
+
+<div>
+  <form action="/users/:user_id/stories" method="post">
+    <h3>Title:</h3>
+    <input type="text" name="stories[title]" placeholder="Title">
+    <h3>Summary:</h3>
+    <textarea name="stories[summary]" rows= "20" cols="75" placeholder="Summary">
+    <input type="submit">
+  </form>
+</div>
