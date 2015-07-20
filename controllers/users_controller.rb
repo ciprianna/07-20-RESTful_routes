@@ -21,11 +21,7 @@ post "/users" do
 end
 
 get "/users/delete" do
-  erb :"users/delete"
-end
-
-delete "/users/:id" do
-  user = User.find(params["id"])
+  user = User.find(params["users"]["id"])
   user.delete
   redirect "users"
 end

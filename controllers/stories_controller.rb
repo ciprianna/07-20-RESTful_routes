@@ -25,16 +25,10 @@ post "/users/:user_id/stories" do
 end
 
 get "/users/:user_id/stories/delete" do
+  story_id = Story.find(params["stories"]["id"])
+  story_id.delete
   @user_id = params["user_id"]
-  @user_stories = Story.where(user_id: @user_id)
-  erb :"stories/delete"
-end
-
-delete "/users/:user_id/stories/:id" do
-  story = Story.find(params["id"])
-  story.delete
-  @user_id = params["user_id"]
-  redirect "/users/:user_id/stories"
+  redirect "/users/#{@user_id}/stories"
 end
 
 get "/users/:id/edit" do

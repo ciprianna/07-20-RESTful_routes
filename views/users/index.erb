@@ -1,11 +1,15 @@
 <div>
   <h2>Users</h2>
-  <a href="/users/delete">Delete</a>
   <ul>
     <% User.all.each do |user| %>
     <li>
       <a href="/users/<%= user.id %>"><%= user.email %></a>
       <a href="/users/<%= user.id %>/edit">Edit</a>
+      <a href="/users/delete">Delete</a>
+      <form action="/users/delete">
+        <input type="submit" value="Delete">
+        <input type="hidden" name="users[id]" value="<%= user.id %>">
+      </form>
     </li>
     <% end %>
   </ul>

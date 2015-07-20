@@ -1,12 +1,17 @@
 <div>
   <h2>Users</h2>
-  <a href="/users/<%= @user_id %>/stories/delete">Delete</a>
+
   <ul>
 
     <% @user_stories.each do |story| %>
     <li>
       <a href="/users/<%= @user_id %>/stories/<%= story.id %>"><%= story.title %></a>
       <a href="/users/<%= @user_id %>/stories/<%= story.id %>/edit">Edit</a>
+      <form action="/users/<%= @user_id %>/stories/delete">
+        <input type="submit" value="Delete">
+        <input type="hidden" name="stories[id]" value="<%= story.id %>">
+      </form>
+
     </li>
     <% end %>
   </ul>
