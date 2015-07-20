@@ -29,4 +29,12 @@ unless ActiveRecord::Base.connection.table_exists?(:users)
   end
 end
 
+# stories table
+unless ActiveRecord::Base.connection.table_exists?(:stories)
+  ActiveRecord::Base.connection.create_table :stories do |table|
+    table.text :title
+    table.text :summary
+  end
+end
+
 ActiveRecord::Base.logger = ActiveSupport::Logger.new(STDOUT)
