@@ -1,6 +1,17 @@
 <div>
   <h2>Users</h2>
-  <a href="/login">Login</a>
+  <div>
+    <% if session[:user_id] %>
+      <form action="/users">
+        <input type="hidden" name="log_out" value="true">
+        <input type="submit" value="Log Out">
+      </form>
+
+    <% else %>
+      <a href="/login">Login</a>
+    <% end %>
+  </div>
+
   <ul>
     <% User.all.each do |user| %>
     <li>

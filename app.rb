@@ -4,6 +4,7 @@ require "sinatra"
 require "sinatra/reloader"
 require "bcrypt"
 require "active_record"
+set :sessions, true
 
 # Database
 require_relative "database_setup.rb"
