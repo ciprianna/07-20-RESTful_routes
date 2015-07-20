@@ -25,8 +25,9 @@ get "/users/delete" do
 end
 
 delete "/users/:id" do
-  
-  erb "delete"
+  user = User.find(params["id"])
+  user.delete
+  redirect "users"
 end
 
 get "/users/:id/edit" do
