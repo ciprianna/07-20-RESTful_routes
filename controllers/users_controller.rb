@@ -51,5 +51,6 @@ put "/users/:id" do
 end
 
 get "/users/:id" do
-  erb "show"
+  @user = User.find(params["id"])
+  erb :"users/show"
 end
