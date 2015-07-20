@@ -68,8 +68,12 @@ end
 
 # Edit a user
 get "/users/:id/edit" do
-  @user = User.find(params["id"])
-  erb :"users/edit"
+  if session[:user_id] == params["id"]
+    @user = User.find(params["id"])
+    erb :"users/edit"
+  else
+    erb :"users/login"
+  end
 end
 
 # Validate and save an existing user
