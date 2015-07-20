@@ -5,6 +5,7 @@
     <% User.all.each do |user| %>
     <li>
       <a href="/users/<%= user.id %>"><%= user.email %></a>
+      <a href="/users/<%= user.id %>/edit">Edit</a>
     </li>
     <% end %>
   </ul>

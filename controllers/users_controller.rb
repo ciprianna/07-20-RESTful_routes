@@ -31,13 +31,25 @@ delete "/users/:id" do
 end
 
 get "/users/:id/edit" do
+  @user = User.find(params["id"])
   erb :"users/edit"
 end
 
-put "users/:id" do
-  erb "update"
+put "/users/:id" do
+  @user = User.find(params["id"])
+  @user.email = params["users"]["email"]
+  encrypted_password = BCrypt::Password.create(params["users"]["password"])
+  @user.password = encrypted_password
+  @user.save
+
+  if !@user.valid?
+    @user
+    erb :"users/edit"
+  else
+    redirect "/users"
+  end
 end
 
-get "users/:id" do
+get "/users/:id" do
   erb "show"
 end
