@@ -6,9 +6,10 @@
       <a href="/users/<%= user.id %>"><%= user.email %></a>
       <a href="/users/<%= user.id %>/edit">Edit</a>
       <a href="/users/delete">Delete</a>
-      <form action="/users/delete">
+      <form action="/users/delete" method="post">
         <input type="submit" value="Delete">
         <input type="hidden" name="users[id]" value="<%= user.id %>">
+        <input type="hidden" name="_method" value="delete">
       </form>
     </li>
     <% end %>

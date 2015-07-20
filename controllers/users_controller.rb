@@ -20,7 +20,7 @@ post "/users" do
 
 end
 
-get "/users/delete" do
+delete "/users/delete" do
   user = User.find(params["users"]["id"])
   user.delete
   redirect "users"

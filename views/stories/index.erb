@@ -7,9 +7,10 @@
     <li>
       <a href="/users/<%= @user.id %>/stories/<%= story.id %>"><%= story.title %></a>
       <a href="/users/<%= @user.id %>/stories/<%= story.id %>/edit">Edit</a>
-      <form action="/users/<%= @user.id %>/stories/delete">
+      <form action="/users/<%= @user.id %>/stories/delete" method="post">
         <input type="submit" value="Delete">
         <input type="hidden" name="stories[id]" value="<%= story.id %>">
+        <input type="hidden" name="_method" value="delete">
       </form>
 
     </li>

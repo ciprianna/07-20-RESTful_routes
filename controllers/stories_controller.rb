@@ -24,7 +24,7 @@ post "/users/:user_id/stories" do
 
 end
 
-get "/users/:user_id/stories/delete" do
+delete "/users/:user_id/stories/delete" do
   story_id = Story.find(params["stories"]["id"])
   story_id.delete
   @user_id = params["user_id"]
