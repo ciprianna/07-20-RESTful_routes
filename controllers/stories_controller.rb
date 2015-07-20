@@ -24,9 +24,10 @@ post "/users/:user_id/stories" do
 
 end
 
-get "/users/delete" do
+get "/users/:user_id/stories/delete" do
   @user_id = params["user_id"]
-  erb :"users/delete"
+  @user_stories = Story.where(user_id: @user_id)
+  erb :"stories/delete"
 end
 
 delete "/users/:user_id/stories/:id" do
