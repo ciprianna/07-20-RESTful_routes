@@ -34,6 +34,7 @@ unless ActiveRecord::Base.connection.table_exists?(:stories)
   ActiveRecord::Base.connection.create_table :stories do |table|
     table.text :title
     table.text :summary
+    table.integer :user_id
   end
 end
 

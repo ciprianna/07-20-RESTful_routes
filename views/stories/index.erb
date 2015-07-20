@@ -1,8 +1,9 @@
 <div>
   <h2>Users</h2>
-  <!-- <a href="/users/delete">Delete</a> -->
+  <a href="/users/<%= @user_id %>/stories/delete">Delete</a>
   <ul>
-    <% Story.all.each do |story| %>
+
+    <% @user_stories.each do |story| %>
     <li>
       <a href="/users/<%= @user_id %>/stories/<%= story.id %>"><%= story.title %></a>
       <a href="/users/<%= @user_id %>/stories/<%= story.id %>/edit">Edit</a>

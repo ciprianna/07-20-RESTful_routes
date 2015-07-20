@@ -5,7 +5,7 @@
 </div>
 
 <div>
-  <form action="/users/:user_id/stories" method="post">
+  <form action="/users/<%= @user_id %>/stories" method="post">
     <h3>Title:</h3>
     <input type="text" name="stories[title]" placeholder="Title">
     <h3>Summary:</h3>

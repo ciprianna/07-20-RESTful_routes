@@ -1,0 +1,9 @@
+<% Story.all.each do |story|%>
+<form action="/users/<%= @user_id %>/stories/<%= story.id %>" method="post">
+  <select name="stories[id]">
+    <option value="<%=story.id%>">
+      <%=story.title%></option></select>
+    <input type="hidden" name="_method" value="delete">
+  <%end%>
+  <input type="submit">
+</form>
