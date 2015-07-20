@@ -1,0 +1,16 @@
+<div>
+  <% @story.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+</div>
+
+<div>
+  <form action="/users/<%= @user_id %>/stories/<%= @story.id %>" method="post">
+    <h3>Tile:</h3>
+    <input type="text" name="stories[title]" value="<%= @story.title %>">
+    <h3>Summary:</h3>
+    <textarea name="stories[summary]" rows= "20" cols="75" placeholder="Summary"><%= @story.summary %></textarea>
+    <input type="hidden" name="_method" value="put">
+    <input type="submit">
+  </form>
+</div>

@@ -1,6 +1,6 @@
 get "/users/:user_id/stories" do
-  @user_id = params["user_id"]
-  @user_stories = Story.where(user_id: @user_id)
+  @user = User.find(params["user_id"])
+  @user_stories = Story.where(user_id: @user.id)
   erb :"stories/index"
 end
 
@@ -31,27 +31,28 @@ get "/users/:user_id/stories/delete" do
   redirect "/users/#{@user_id}/stories"
 end
 
-get "/users/:id/edit" do
-  @user = User.find(params["id"])
-  erb :"users/edit"
+get "/users/:user_id/stories/:id/edit" do
+  @story = Story.find(params["id"])
+  @user_id = params["user_id"]
+  erb :"stories/edit"
 end
 
-put "/users/:id" do
-  @user = User.find(params["id"])
-  @user.email = params["users"]["email"]
-  encrypted_password = BCrypt::Password.create(params["users"]["password"])
-  @user.password = encrypted_password
-  @user.save
+put "/users/:user_id/stories/:id" do
+  @story = Story.find(params["id"])
+  @story.title = params["stories"]["title"]
+  @story.summary = params["stories"]["summary"]
+  @story.save
+  @user_id = params["user_id"]
 
-  if !@user.valid?
-    @user
-    erb :"users/edit"
+  if !@story.valid?
+    @story
+    erb :"stories/edit"
   else
-    redirect "/users"
+    redirect "/users/#{@user_id}/stories"
   end
 end
 
-get "/users/:id" do
-  @user = User.find(params["id"])
-  erb :"users/show"
+get "/users/:user_id/stories/:id" do
+  @story = Story.find(params["id"])
+  erb :"stories/show"
 end
