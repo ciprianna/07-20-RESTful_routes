@@ -3,11 +3,11 @@ get "/users" do
 end
 
 get "/users/new" do
+  @new_user = User.new
   erb :"users/new"
 end
 
 post "/users" do
-  @new_user = User.new
   email = params["users"]["email"]
   password = Bcrypt::Password.create(params["users"]["password"])
   @new_user = User.create({"email" => email, "password" => password})

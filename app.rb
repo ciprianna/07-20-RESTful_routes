@@ -7,3 +7,9 @@ require "active_record"
 
 # Database
 require_relative "database_setup.rb"
+
+# Models
+require_relative "models/user.rb"
+
+# Controllers
+require_relative "controllers/users_controller.rb"
