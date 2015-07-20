@@ -7,9 +7,13 @@ end
 
 # Create a new story for a user
 get "/users/:user_id/stories/new" do
-  @user_id = params["user_id"]
-  @new_story = Story.new
-  erb :"stories/new"
+  if session[:user_id] == params["user_id"]
+    @user_id = params["user_id"]
+    @new_story = Story.new
+    erb :"stories/new"
+  else
+    erb :"users/login"
+  end
 end
 
 # Validate and save the new story for a user
@@ -29,17 +33,25 @@ end
 
 # Delete a user's story
 delete "/users/:user_id/stories/delete" do
-  story_id = Story.find(params["stories"]["id"])
-  story_id.delete
-  @user_id = params["user_id"]
-  redirect "/users/#{@user_id}/stories"
+  if session[:user_id] == params["user_id"]
+    story_id = Story.find(params["stories"]["id"])
+    story_id.delete
+    @user_id = params["user_id"]
+    redirect "/users/#{@user_id}/stories"
+  else
+    erb :"users/login"
+  end
 end
 
 # Edit a user's story
 get "/users/:user_id/stories/:id/edit" do
-  @story = Story.find(params["id"])
-  @user_id = params["user_id"]
-  erb :"stories/edit"
+  if session[:user_id] == params["user_id"]
+    @story = Story.find(params["id"])
+    @user_id = params["user_id"]
+    erb :"stories/edit"
+  else
+    erb :"users/login"
+  end
 end
 
 # Validate and save an existing user's story
