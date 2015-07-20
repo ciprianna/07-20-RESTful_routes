@@ -1,4 +1,5 @@
 get "/users/:user_id/stories" do
+  erb :"stories/index"
 end
 
 get "/users/:user_id/stories/new" do
@@ -10,6 +11,8 @@ post "/users/:user_id/stories" do
   title = params["stories"]["title"]
   summary = params["stories"]["summary"]
   @new_story = Story.create({"title" => title, "summary" => summary})
+  
+  @user_id = params["user_id"]
 
   if @new_story.valid?
     redirect "/users/:user_id/stories/#{@new_story.id}"
