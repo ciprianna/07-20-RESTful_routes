@@ -29,10 +29,11 @@ get "/users/delete" do
   erb :"users/delete"
 end
 
-delete "/users/:id" do
-  user = User.find(params["id"])
-  user.delete
-  redirect "users"
+delete "/users/:user_id/stories/:id" do
+  story = Story.find(params["id"])
+  story.delete
+  @user_id = params["user_id"]
+  redirect "/users/:user_id/stories"
 end
 
 get "/users/:id/edit" do
