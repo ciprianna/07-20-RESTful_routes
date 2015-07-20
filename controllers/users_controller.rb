@@ -7,6 +7,17 @@ get "/users/new" do
 end
 
 post "/users" do
+  @new_user = User.new
+  email = params["users"]["email"]
+  password = Bcrypt::Password.create(params["users"]["password"])
+  @new_user = User.create({"email" => email, "password" => password})
+
+  if @new_user.valid?
+    redirect "/users/#{@new_user.id}"
+  else
+    erb :"users/new"
+  end
+
 end
 
 delete "/users/:id" do

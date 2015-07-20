@@ -1,4 +1,10 @@
 <div>
+  <% @new_user.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+</div>
+
+<div>
   <form action="/users" method="post">
     <h3>Email:</h3>
     <input type="text" name="users[email]" placeholder="Email">
