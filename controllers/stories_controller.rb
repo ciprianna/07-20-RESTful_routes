@@ -41,29 +41,25 @@ delete "/delete_story" do
 end
 
 # Edit a user's story
-get "/users/:user_id/stories/:id/edit" do
-  if session[:user_id] == params["user_id"].to_i
-    @story = Story.find(params["id"])
-    @user_id = params["user_id"]
+get "/edit_story" do
+    @user = User.find(session[:user_id])
+    @story = Story.find(params["stories"]["id"])
     erb :"stories/edit"
-  else
-    erb :"users/login"
-  end
 end
 
 # Validate and save an existing user's story
 put "/users/:user_id/stories/:id" do
+  @user = User.find(session[:user_id])
   @story = Story.find(params["id"])
   @story.title = params["stories"]["title"]
   @story.summary = params["stories"]["summary"]
   @story.save
-  @user_id = params["user_id"]
 
   if !@story.valid?
     @story
     erb :"stories/edit"
   else
-    redirect "/users/#{@user_id}/stories"
+    redirect "/users/#{@user.id}/stories"
   end
 end
 

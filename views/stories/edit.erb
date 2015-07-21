@@ -5,7 +5,8 @@
 </div>
 
 <div>
-  <form action="/users/<%= @user_id %>/stories/<%= @story.id %>" method="post">
+
+  <form action="/users/<%= @user.id %>/stories/<%= @story.id %>" method="post">
     <h3>Tile:</h3>
     <input type="text" name="stories[title]" value="<%= @story.title %>">
     <h3>Summary:</h3>

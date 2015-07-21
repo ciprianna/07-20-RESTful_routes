@@ -8,13 +8,16 @@
       <a href="/users/<%= @user.id %>/stories/<%= story.id %>"><%= story.title %></a>
       <div>
         <% if @current_user == true %>
-          <a href="/users/<%= @user.id %>/stories/<%= story.id %>/edit">Edit</a>
-          <form action="/delete_story" method="post">
-            <input type="submit" value="Delete">
-            <input type="hidden" name="stories[id]" value="<%= story.id %>">
-            <input type="hidden" name="_method" value="delete">
-          </form>
-          <%end%>
+        <form action="/edit_story">
+          <input type="submit" value="Edit">
+          <input type="hidden" name="stories[id]" value="<%= story.id%>">
+        </form>
+        <form action="/delete_story" method="post">
+          <input type="submit" value="Delete">
+          <input type="hidden" name="stories[id]" value="<%= story.id %>">
+          <input type="hidden" name="_method" value="delete">
+        </form>
+        <%end%>
       </div>
     </li>
     <% end %>
