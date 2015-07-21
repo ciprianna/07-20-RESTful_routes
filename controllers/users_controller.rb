@@ -8,21 +8,21 @@ post "/authenticate_login" do
   entered_email = params["users"]["email"]
   @user_email = User.find_by(email: entered_email)
 
-if !@user_email.nil?
-  @valid = true
-  given_pw = params["users"]["password"]
-  actual_pw = BCrypt::Password.new(@user_email.password)
-  if actual_pw == given_pw
-    session[:user_id] = @user_email.id
-    erb :"users/index"
+  if !@user_email.nil?
+    @valid = true
+    given_pw = params["users"]["password"]
+    actual_pw = BCrypt::Password.new(@user_email.password)
+    if actual_pw == given_pw
+      session[:user_id] = @user_email.id
+      erb :"users/index"
+    else
+      @valid = false
+      erb :"users/login"
+    end
   else
     @valid = false
     erb :"users/login"
   end
-else
-  @valid = false
-  erb :"users/login"
-end
 end
 
 # List all users
