@@ -63,10 +63,14 @@ end
 
 # Delete a user
 delete "/confirm_delete" do
-  user = User.find(session[:user_id])
-  user.delete
-  session[:user_id] = nil
-  redirect "users"
+  if params["confirm_delete"] == "yes"
+      user = User.find(session[:user_id])
+      user.delete
+      session[:user_id] = nil
+      redirect "/users"
+    else
+      redirect "/users"
+    end
 end
 
 # Edit a user
