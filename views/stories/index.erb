@@ -6,13 +6,16 @@
     <% @user_stories.each do |story| %>
     <li>
       <a href="/users/<%= @user.id %>/stories/<%= story.id %>"><%= story.title %></a>
-      <a href="/users/<%= @user.id %>/stories/<%= story.id %>/edit">Edit</a>
-      <form action="/users/<%= @user.id %>/stories/delete" method="post">
-        <input type="submit" value="Delete">
-        <input type="hidden" name="stories[id]" value="<%= story.id %>">
-        <input type="hidden" name="_method" value="delete">
-      </form>
-
+      <div>
+        <% if @current_user == true %>
+          <a href="/users/<%= @user.id %>/stories/<%= story.id %>/edit">Edit</a>
+          <form action="/delete_story" method="post">
+            <input type="submit" value="Delete">
+            <input type="hidden" name="stories[id]" value="<%= story.id %>">
+            <input type="hidden" name="_method" value="delete">
+          </form>
+          <%end%>
+      </div>
     </li>
     <% end %>
   </ul>
