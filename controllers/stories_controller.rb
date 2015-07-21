@@ -7,7 +7,7 @@ end
 
 # Create a new story for a user
 get "/users/:user_id/stories/new" do
-  if session[:user_id] == params["user_id"]
+  if session[:user_id] == params["user_id"].to_i
     @user_id = params["user_id"]
     @new_story = Story.new
     erb :"stories/new"
@@ -33,7 +33,7 @@ end
 
 # Delete a user's story
 delete "/users/:user_id/stories/delete" do
-  if session[:user_id] == params["user_id"]
+  if session[:user_id] == params["user_id"].to_i
     story_id = Story.find(params["stories"]["id"])
     story_id.delete
     @user_id = params["user_id"]
@@ -45,7 +45,7 @@ end
 
 # Edit a user's story
 get "/users/:user_id/stories/:id/edit" do
-  if session[:user_id] == params["user_id"]
+  if session[:user_id] == params["user_id"].to_i
     @story = Story.find(params["id"])
     @user_id = params["user_id"]
     erb :"stories/edit"
