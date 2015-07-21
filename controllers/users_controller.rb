@@ -56,14 +56,16 @@ post "/users" do
 end
 
 # Delete a user
-delete "/users/delete" do
-  if session[:user_id] == params["users"]["id"]
-    user = User.find(params["users"]["id"])
-    user.delete
-    redirect "users"
-  else
-    erb :"users/login"
-  end
+get "/delete_profile" do
+  erb :"users/delete"
+end
+
+# Delete a user
+delete "/confirm_delete" do
+  user = User.find(session[:user_id])
+  user.delete
+  session[:user_id] = nil
+  redirect "users"
 end
 
 # Edit a user
