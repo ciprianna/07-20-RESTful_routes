@@ -67,13 +67,9 @@ delete "/users/delete" do
 end
 
 # Edit a user
-get "/users/:id/edit" do
-  if session[:user_id] == params["id"]
-    @user = User.find(params["id"])
-    erb :"users/edit"
-  else
-    erb :"users/login"
-  end
+get "/edit_profile" do
+  @user = User.find(session[:user_id])
+  erb :"users/edit"
 end
 
 # Validate and save an existing user

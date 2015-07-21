@@ -6,7 +6,7 @@
         <input type="hidden" name="log_out" value="true">
         <input type="submit" value="Log Out">
       </form>
-
+      <a href="/edit_profile">Edit Profile</a>
     <% else %>
       <a href="/login">Login</a>
     <% end %>
@@ -16,7 +16,6 @@
     <% User.all.each do |user| %>
     <li>
       <a href="/users/<%= user.id %>"><%= user.email %></a>
-      <a href="/users/<%= user.id %>/edit">Edit</a>
       <form action="/users/delete" method="post">
         <input type="submit" value="Delete">
         <input type="hidden" name="users[id]" value="<%= user.id %>">
