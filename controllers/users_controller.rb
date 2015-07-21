@@ -48,6 +48,7 @@ post "/users" do
   @new_user = User.create({"email" => email, "password" => password})
 
   if @new_user.valid?
+    session[:user_id] = @new_user.id
     redirect "/users/#{@new_user.id}"
   else
     erb :"users/new"
